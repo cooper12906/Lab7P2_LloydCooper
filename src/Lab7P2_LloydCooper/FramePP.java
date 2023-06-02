@@ -46,7 +46,7 @@ public class FramePP extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         exportarDatos2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        addRows = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,10 +123,10 @@ public class FramePP extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Anadir fila");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        addRows.setText("Anadir fila");
+        addRows.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                addRowsMouseClicked(evt);
             }
         });
 
@@ -139,7 +139,7 @@ public class FramePP extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addRows, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exportarDatos2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
@@ -152,7 +152,7 @@ public class FramePP extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exportarDatos2)
-                    .addComponent(jButton1))
+                    .addComponent(addRows))
                 .addGap(34, 34, 34))
         );
 
@@ -377,7 +377,7 @@ public class FramePP extends javax.swing.JFrame {
         int option = fileChooser.showSaveDialog(this);
 
         if (option == JFileChooser.APPROVE_OPTION) {
-            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+            String filePath = fileChooser.getSelectedFile().getAbsolutePath()+".txt";
             
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));               
@@ -391,10 +391,10 @@ public class FramePP extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exportarDatos2MouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void addRowsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addRowsMouseClicked
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
         model.addRow(new Object[model.getColumnCount()]);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_addRowsMouseClicked
     
     
         
@@ -439,9 +439,9 @@ public class FramePP extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarTabla;
+    private javax.swing.JButton addRows;
     private javax.swing.JButton exportarDatos;
     private javax.swing.JButton exportarDatos2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

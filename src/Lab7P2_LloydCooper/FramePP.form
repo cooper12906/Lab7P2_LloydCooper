@@ -180,7 +180,7 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="jScrollPane3" min="-2" pref="450" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jButton1" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="addRows" min="-2" pref="130" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="exportarDatos2" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
@@ -197,7 +197,7 @@
                       <EmptySpace pref="42" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="exportarDatos2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="addRows" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
@@ -270,12 +270,12 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exportarDatos2MouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="addRows">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Anadir fila"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addRowsMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
