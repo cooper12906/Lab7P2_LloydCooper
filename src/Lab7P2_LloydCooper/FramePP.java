@@ -2,7 +2,9 @@ package Lab7P2_LloydCooper;
 
 import java.awt.event.MouseAdapter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -21,10 +23,7 @@ public class FramePP extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-    }
-
-    
-    
+    }  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,11 +37,16 @@ public class FramePP extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        actualizarTabla = new javax.swing.JButton();
+        exportarDatos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        exportarDatos2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,39 +70,77 @@ public class FramePP extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 450, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 450, 230));
 
-        jButton1.setText("Actualizar tabla");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        actualizarTabla.setText("Actualizar tabla");
+        actualizarTabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                actualizarTablaMouseClicked(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, 140, -1));
+        jPanel1.add(actualizarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 140, -1));
 
-        jButton2.setText("Exportar datos");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 140, -1));
+        exportarDatos.setText("Exportar datos");
+        exportarDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportarDatosMouseClicked(evt);
+            }
+        });
+        jPanel1.add(exportarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 140, -1));
 
         jTabbedPane1.addTab("Menu principal", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Name", "Category", "Price", "Aisle", "Bin"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable2);
+
+        exportarDatos2.setText("Exportar datos");
+        exportarDatos2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportarDatos2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exportarDatos2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 369, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(exportarDatos2)
+                .addGap(34, 34, 34))
         );
 
         jTabbedPane1.addTab("Crear archivo", jPanel2);
@@ -123,98 +165,165 @@ public class FramePP extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void actualizarTablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarTablaMouseClicked
         DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("ID");
-    model.addColumn("Name");
-    model.addColumn("Category");
-    model.addColumn("Price");
-    model.addColumn("Aisle");
-    model.addColumn("Bin");
+        model.addColumn("ID");
+        model.addColumn("Name");
+        model.addColumn("Category");
+        model.addColumn("Price");
+        model.addColumn("Aisle");
+        model.addColumn("Bin");
 
-    try {
-        BufferedReader br = new BufferedReader(new FileReader("src/txt/data.txt"));
-        String linea;
-        int lineNumber = 1;
-        while ((linea = br.readLine()) != null) {
-            String[] data = linea.split(",");
-            if (data.length == 6) {
-                
-                int id;
-                try {
-                    id = Integer.parseInt(data[0]);
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: El ID en la línea " + lineNumber + " no es un numero entero valido");
-                    lineNumber++;
-                    continue;
-                }
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/txt/data.txt"));
+            String linea;
+            int lineNumber = 1;
+            while ((linea = br.readLine()) != null) {
+                String[] data = linea.split(",");
+                if (data.length == 6) {
 
-                String name = data[1];
-
-                int category;
-                try {
-                    category = Integer.parseInt(data[2]);
-                    if (category < 0 || category > 9) {
-                        throw new NumberFormatException();
+                    int id;
+                    try {
+                        id = Integer.parseInt(data[0]);
+                    } catch (NumberFormatException e) { 
+                        lineNumber++;
+                        continue;
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: La categoría en la línea " + lineNumber + " no es un número entero válido entre 0 y 9");
-                    lineNumber++;
-                    continue;
-                }
 
-                double price;
-                try {
-                    price = Double.parseDouble(data[3]);
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: El precio en la línea " + lineNumber + " no es un número válido");
-                    lineNumber++;
-                    continue;
-                }
+                    String name = data[1];
 
-                int aisle;
-                try {
-                    aisle = Integer.parseInt(data[4]);
-                    if (aisle < 0 || aisle > 999) {
-                        throw new NumberFormatException();
+                    int category;
+                    try {
+                        category = Integer.parseInt(data[2]);
+                        if (category < 0 || category > 9) {
+                            throw new NumberFormatException();
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: La categoría en la línea " + lineNumber + " no es un número entero válido entre 0 y 9");
+                        lineNumber++;
+                        continue;
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: El pasillo en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
-                    lineNumber++;
-                    continue;
-                }
 
-                int bin;
-                try {
-                    bin = Integer.parseInt(data[5]);
-                    if (bin < 0 || bin > 999) {
-                        throw new NumberFormatException();
+                    double price;
+                    try {
+                        price = Double.parseDouble(data[3]);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: El precio en la línea " + lineNumber + " no es un número válido");
+                        lineNumber++;
+                        continue;
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: El bin en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
-                    lineNumber++;
-                    continue;
+
+                    int aisle;
+                    try {
+                        aisle = Integer.parseInt(data[4]);
+                        if (aisle < 0 || aisle > 999) {
+                            throw new NumberFormatException();
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: El pasillo en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
+                        lineNumber++;
+                        continue;
+                    }
+
+                    int bin;
+                    try {
+                        bin = Integer.parseInt(data[5]);
+                        if (bin < 0 || bin > 999) {
+                            throw new NumberFormatException();
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: El bin en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
+                        lineNumber++;
+                        continue;
+                    }
+
+
+                    model.addRow(data);
+                } else {
+                    System.out.println("Error: La línea " + lineNumber + " no tiene el formato correcto");
                 }
 
-                
-                model.addRow(data);
-            } else {
-                System.out.println("Error: La línea " + lineNumber + " no tiene el formato correcto");
+                lineNumber++;
             }
-
-            lineNumber++;
+            br.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-        br.close();
+
+        jTable1.setModel(model);
+        tablaActualizada = true;
+        
+    }//GEN-LAST:event_actualizarTablaMouseClicked
+
+    private void exportarDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarDatosMouseClicked
+        
+        if (tablaActualizada) {
+             String jsonData = generarJsonFile();
+
+            String filePath = "src/txt/datajson.txt";
+            guardarJsonAFile(jsonData, filePath);
+        }
+    }//GEN-LAST:event_exportarDatosMouseClicked
+    
+    private void exportarDatos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarDatos2MouseClicked
+        
+    }//GEN-LAST:event_exportarDatos2MouseClicked
+    
+    private String generarJsonFile() {
+      StringBuilder archivoJson = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/txt/data.txt"));
+            String line;
+            archivoJson.append("["); 
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 6) {
+                    // Validar que los valores numéricos sean correctos antes de convertirlos
+                    if (esNumerico(data[0])) {
+                        if (archivoJson.length() > 1) {
+                            archivoJson.append(",");
+                        }
+                        archivoJson.append("{");
+                        archivoJson.append("\"id\": ").append(Integer.parseInt(data[0])).append(",");
+                        archivoJson.append("\"name\": \"").append(data[1]).append("\",");
+                        archivoJson.append("\"category\": ").append(Integer.parseInt(data[2])).append(",");
+                        archivoJson.append("\"price\": ").append(Double.parseDouble(data[3])).append(",");
+                        archivoJson.append("\"aisle\": ").append(Integer.parseInt(data[4])).append(",");
+                        archivoJson.append("\"bin\": ").append(Integer.parseInt(data[5]));
+                        archivoJson.append("}");
+                    }
+                }
+            }
+            br.close();
+
+            archivoJson.append("]");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return archivoJson.toString();
+    }
+
+    private boolean esNumerico(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+    private void guardarJsonAFile(String jsonData, String filePath) {
+    try {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+        writer.write(jsonData);
+        writer.close();
     } catch (IOException ex) {
         ex.printStackTrace();
     }
+}
 
-    jTable1.setModel(model);
-    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -255,12 +364,16 @@ public class FramePP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton actualizarTabla;
+    private javax.swing.JButton exportarDatos;
+    private javax.swing.JButton exportarDatos2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+    private boolean tablaActualizada = false;   
 }
