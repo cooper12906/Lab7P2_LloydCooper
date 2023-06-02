@@ -34,13 +34,13 @@ public class FramePP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,7 +57,15 @@ public class FramePP extends javax.swing.JFrame {
             new String [] {
                 "ID", "Name", "Category", "Price", "Aisle", "Bin"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -65,63 +73,55 @@ public class FramePP extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 450, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 450, 230));
 
-        jPanel2.setBackground(new java.awt.Color(255, 0, 0));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel2MouseClicked(evt);
-            }
-        });
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("X");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 50, 30));
-
-        jButton1.setText("jButton1");
+        jButton1.setText("Actualizar tabla");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 140, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, 140, -1));
 
-        jButton2.setText("jButton2");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 140, -1));
+        jButton2.setText("Exportar datos");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 140, -1));
+
+        jTabbedPane1.addTab("Menu principal", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 369, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Crear archivo", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
@@ -129,30 +129,91 @@ public class FramePP extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("ID");
-        model.addColumn("Name");
-        model.addColumn("Category");
-        model.addColumn("Price");
-        model.addColumn("Aisle");
-        model.addColumn("Bin");
+    model.addColumn("ID");
+    model.addColumn("Name");
+    model.addColumn("Category");
+    model.addColumn("Price");
+    model.addColumn("Aisle");
+    model.addColumn("Bin");
 
-        ArrayList<String[]> datos = new ArrayList<>();
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("src/txt/data.txt"));
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] data = linea.split(",");
-                if (data.length >= 5) {
-                    model.addRow(data);
+    try {
+        BufferedReader br = new BufferedReader(new FileReader("src/txt/data.txt"));
+        String linea;
+        int lineNumber = 1;
+        while ((linea = br.readLine()) != null) {
+            String[] data = linea.split(",");
+            if (data.length == 6) {
+                
+                int id;
+                try {
+                    id = Integer.parseInt(data[0]);
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: El ID en la línea " + lineNumber + " no es un numero entero valido");
+                    lineNumber++;
+                    continue;
                 }
-            }
-            br.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
 
-        jTable1.setModel(model);// TODO add your handling code here:
+                String name = data[1];
+
+                int category;
+                try {
+                    category = Integer.parseInt(data[2]);
+                    if (category < 0 || category > 9) {
+                        throw new NumberFormatException();
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: La categoría en la línea " + lineNumber + " no es un número entero válido entre 0 y 9");
+                    lineNumber++;
+                    continue;
+                }
+
+                double price;
+                try {
+                    price = Double.parseDouble(data[3]);
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: El precio en la línea " + lineNumber + " no es un número válido");
+                    lineNumber++;
+                    continue;
+                }
+
+                int aisle;
+                try {
+                    aisle = Integer.parseInt(data[4]);
+                    if (aisle < 0 || aisle > 999) {
+                        throw new NumberFormatException();
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: El pasillo en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
+                    lineNumber++;
+                    continue;
+                }
+
+                int bin;
+                try {
+                    bin = Integer.parseInt(data[5]);
+                    if (bin < 0 || bin > 999) {
+                        throw new NumberFormatException();
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: El bin en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
+                    lineNumber++;
+                    continue;
+                }
+
+                
+                model.addRow(data);
+            } else {
+                System.out.println("Error: La línea " + lineNumber + " no tiene el formato correcto");
+            }
+
+            lineNumber++;
+        }
+        br.close();
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+
+    jTable1.setModel(model);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -196,10 +257,10 @@ public class FramePP extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
