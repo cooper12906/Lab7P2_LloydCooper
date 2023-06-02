@@ -101,6 +101,12 @@ public class FramePP extends javax.swing.JFrame {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
@@ -344,14 +350,21 @@ public class FramePP extends javax.swing.JFrame {
         int contadorRows = model.getRowCount();
         int contadorColumns = model.getColumnCount();
 
-        for (int i = 0; i < contadorRows; i++) {
+         for (int i = 0; i < contadorRows; i++) {
+            boolean filaVacia = true;
             for (int j = 0; j < contadorColumns; j++) {
-                archivoTxt.append(model.getValueAt(i, j));
+                Object valor = model.getValueAt(i, j);
+                if (valor != null && !valor.toString().isEmpty()) {
+                    filaVacia = false;
+                    archivoTxt.append(valor);
+                }
                 if (j < contadorColumns - 1) {
                     archivoTxt.append(",");
                 }
             }
-            archivoTxt.append("\n");
+            if (!filaVacia) {
+                archivoTxt.append("\n");
+            }
         }
 
         JFileChooser fileChooser = new JFileChooser();
@@ -425,5 +438,6 @@ public class FramePP extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
-    private boolean tablaActualizada = false;   
+    private boolean tablaActualizada = false;  
+    private boolean emptyRows = false;
 }
