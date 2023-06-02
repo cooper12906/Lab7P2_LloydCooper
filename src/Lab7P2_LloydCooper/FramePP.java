@@ -48,7 +48,7 @@ public class FramePP extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -92,7 +92,7 @@ public class FramePP extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Menu principal", jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 255));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -265,10 +265,6 @@ public class FramePP extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exportarDatosMouseClicked
     
-    private void exportarDatos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarDatos2MouseClicked
-        
-    }//GEN-LAST:event_exportarDatos2MouseClicked
-    
     private String generarJsonFile() {
       StringBuilder archivoJson = new StringBuilder();
         try {
@@ -279,7 +275,6 @@ public class FramePP extends javax.swing.JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length == 6) {
-                    // Validar que los valores numéricos sean correctos antes de convertirlos
                     if (esNumerico(data[0])) {
                         if (archivoJson.length() > 1) {
                             archivoJson.append(",");
@@ -315,16 +310,44 @@ public class FramePP extends javax.swing.JFrame {
     }
     
     private void guardarJsonAFile(String jsonData, String filePath) {
-    try {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-        writer.write(jsonData);
-        writer.close();
-    } catch (IOException ex) {
-        ex.printStackTrace();
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            writer.write(jsonData);
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
-}
+    
+    private void exportarDatos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportarDatos2MouseClicked
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        StringBuilder archivoTxt = new StringBuilder();
 
+        int contadorRows = model.getRowCount();
+        int contadorColumns = model.getColumnCount();
 
+        for (int i = 0; i < contadorRows; i++) {
+            for (int j = 0; j < contadorColumns; j++) {
+                archivoTxt.append(model.getValueAt(i, j));
+                if (j < contadorColumns - 1) {
+                    archivoTxt.append(",");
+                }
+            }
+            archivoTxt.append("\n");
+        }
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/txt/MessiEsElGOAT.txt"));
+            writer.write(archivoTxt.toString());
+            writer.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_exportarDatos2MouseClicked
+    
+    
+        
+    
     /**
      * @param args the command line arguments
      */
