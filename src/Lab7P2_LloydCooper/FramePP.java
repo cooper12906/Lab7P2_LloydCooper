@@ -284,14 +284,15 @@ public class FramePP extends javax.swing.JFrame {
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/txt/data.txt"));
             String line;
-            archivoJson.append("["); 
+            archivoJson.append("[\n");
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length == 6) {
                     if (esNumerico(data[0])) {
                         if (archivoJson.length() > 1) {
-                            archivoJson.append(",");
+                            
+                            archivoJson.append("\n"); // Agrega una nueva línea antes de cada objeto
                         }
                         archivoJson.append("{");
                         archivoJson.append("\"id\": ").append(Integer.parseInt(data[0])).append(",");
@@ -304,9 +305,11 @@ public class FramePP extends javax.swing.JFrame {
                     }
                 }
             }
-            br.close();
+            archivoJson.append("\n");
+            archivoJson.append("\n]");
 
-            archivoJson.append("]");
+            br.close();
+            
             JFileChooser fileChooser = new JFileChooser();
             FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto", "txt");
             fileChooser.setFileFilter(filtro);
