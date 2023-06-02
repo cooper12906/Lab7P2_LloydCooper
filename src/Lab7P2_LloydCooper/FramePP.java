@@ -313,7 +313,7 @@ public class FramePP extends javax.swing.JFrame {
             int option = fileChooser.showSaveDialog(this);
 
             if (option == JFileChooser.APPROVE_OPTION) {
-                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath()+".txt";
 
                 try {
                     BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
