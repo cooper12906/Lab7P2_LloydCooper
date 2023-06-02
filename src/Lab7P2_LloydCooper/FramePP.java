@@ -25,7 +25,7 @@ public class FramePP extends javax.swing.JFrame {
     public FramePP() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
     }  
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +46,7 @@ public class FramePP extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         exportarDatos2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,15 +100,6 @@ public class FramePP extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
@@ -131,15 +123,25 @@ public class FramePP extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Anadir fila");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exportarDatos2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exportarDatos2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -148,7 +150,9 @@ public class FramePP extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(exportarDatos2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(exportarDatos2)
+                    .addComponent(jButton1))
                 .addGap(34, 34, 34))
         );
 
@@ -208,7 +212,7 @@ public class FramePP extends javax.swing.JFrame {
                             throw new NumberFormatException();
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Error: La categoría en la línea " + lineNumber + " no es un número entero válido entre 0 y 9");
+                        System.out.println("Error: La categoría en la línea " + lineNumber + " no es un numero entero válido entre 0 y 9");
                         lineNumber++;
                         continue;
                     }
@@ -217,7 +221,7 @@ public class FramePP extends javax.swing.JFrame {
                     try {
                         price = Double.parseDouble(data[3]);
                     } catch (NumberFormatException e) {
-                        System.out.println("Error: El precio en la línea " + lineNumber + " no es un número válido");
+                        System.out.println("Error: El precio en la línea " + lineNumber + " no es un numero valido");
                         lineNumber++;
                         continue;
                     }
@@ -229,7 +233,7 @@ public class FramePP extends javax.swing.JFrame {
                             throw new NumberFormatException();
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Error: El pasillo en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
+                        System.out.println("Error: El pasillo en la línea " + lineNumber + " no es un numero entero valido de 3 posiciones");
                         lineNumber++;
                         continue;
                     }
@@ -241,7 +245,7 @@ public class FramePP extends javax.swing.JFrame {
                             throw new NumberFormatException();
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Error: El bin en la línea " + lineNumber + " no es un número entero válido de 3 posiciones");
+                        System.out.println("Error: El bin en la línea " + lineNumber + " no es un numero entero valido de 3 posiciones");
                         lineNumber++;
                         continue;
                     }
@@ -254,6 +258,7 @@ public class FramePP extends javax.swing.JFrame {
 
                 lineNumber++;
             }
+           
             br.close();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -354,21 +359,17 @@ public class FramePP extends javax.swing.JFrame {
         int contadorColumns = model.getColumnCount();
 
         for (int i = 0; i < contadorRows; i++) {
-        boolean filaVacia = true;
         for (int j = 0; j < contadorColumns; j++) {
             Object valor = model.getValueAt(i, j);
             if (valor != null && !valor.toString().isEmpty()) {
-                    filaVacia = false;
-                    archivoTxt.append(valor);
+                archivoTxt.append(valor);
             }
-                if (j < contadorColumns - 1) {
-                    archivoTxt.append(",");
-                }
-        }
-            if (!filaVacia) {
-                archivoTxt.append("\n");
+            if (j < contadorColumns - 1) {
+                archivoTxt.append(",");
             }
         }
+        archivoTxt.append("\n");
+    }
 
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto", "txt");
@@ -379,8 +380,7 @@ public class FramePP extends javax.swing.JFrame {
             String filePath = fileChooser.getSelectedFile().getAbsolutePath();
             
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
-               
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));               
                 writer.write(archivoTxt.toString());
                 writer.close();
                 JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
@@ -390,6 +390,11 @@ public class FramePP extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_exportarDatos2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.addRow(new Object[model.getColumnCount()]);
+    }//GEN-LAST:event_jButton1MouseClicked
     
     
         
@@ -436,6 +441,7 @@ public class FramePP extends javax.swing.JFrame {
     private javax.swing.JButton actualizarTabla;
     private javax.swing.JButton exportarDatos;
     private javax.swing.JButton exportarDatos2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -445,5 +451,4 @@ public class FramePP extends javax.swing.JFrame {
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
     private boolean tablaActualizada = false;  
-    private boolean emptyRows = false;
 }
