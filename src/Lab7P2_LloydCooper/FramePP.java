@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -302,6 +303,8 @@ public class FramePP extends javax.swing.JFrame {
 
             archivoJson.append("]");
             JFileChooser fileChooser = new JFileChooser();
+            FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto", "txt");
+            fileChooser.setFileFilter(filtro);
             int option = fileChooser.showSaveDialog(this);
 
             if (option == JFileChooser.APPROVE_OPTION) {
@@ -350,31 +353,34 @@ public class FramePP extends javax.swing.JFrame {
         int contadorRows = model.getRowCount();
         int contadorColumns = model.getColumnCount();
 
-         for (int i = 0; i < contadorRows; i++) {
-            boolean filaVacia = true;
-            for (int j = 0; j < contadorColumns; j++) {
-                Object valor = model.getValueAt(i, j);
-                if (valor != null && !valor.toString().isEmpty()) {
+        for (int i = 0; i < contadorRows; i++) {
+        boolean filaVacia = true;
+        for (int j = 0; j < contadorColumns; j++) {
+            Object valor = model.getValueAt(i, j);
+            if (valor != null && !valor.toString().isEmpty()) {
                     filaVacia = false;
                     archivoTxt.append(valor);
-                }
+            }
                 if (j < contadorColumns - 1) {
                     archivoTxt.append(",");
                 }
-            }
+        }
             if (!filaVacia) {
                 archivoTxt.append("\n");
             }
         }
 
         JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos de Texto", "txt");
+        fileChooser.setFileFilter(filtro);
         int option = fileChooser.showSaveDialog(this);
 
         if (option == JFileChooser.APPROVE_OPTION) {
             String filePath = fileChooser.getSelectedFile().getAbsolutePath();
-
+            
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+               
                 writer.write(archivoTxt.toString());
                 writer.close();
                 JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
