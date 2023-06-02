@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -293,6 +295,22 @@ public class FramePP extends javax.swing.JFrame {
             br.close();
 
             archivoJson.append("]");
+            JFileChooser fileChooser = new JFileChooser();
+            int option = fileChooser.showSaveDialog(this);
+
+            if (option == JFileChooser.APPROVE_OPTION) {
+                String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+                try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+                    writer.write(archivoJson.toString());
+                    writer.close();
+                    JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Error al guardar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+        }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -336,12 +354,21 @@ public class FramePP extends javax.swing.JFrame {
             archivoTxt.append("\n");
         }
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src/txt/MessiEsElGOAT.txt"));
-            writer.write(archivoTxt.toString());
-            writer.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showSaveDialog(this);
+
+        if (option == JFileChooser.APPROVE_OPTION) {
+            String filePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+                writer.write(archivoTxt.toString());
+                writer.close();
+                JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error al guardar el archivo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_exportarDatos2MouseClicked
     
